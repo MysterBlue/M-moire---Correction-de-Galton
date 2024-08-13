@@ -1,4 +1,4 @@
-"""Inspirée de ChatGPT"""
+"""Générée par CHATGPT"""
 
 import pandas as pd
 import os

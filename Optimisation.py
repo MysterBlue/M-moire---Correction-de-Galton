@@ -1,5 +1,5 @@
 """ Programme qui calcul le portefeuille à la variance minimal, le portefeuille du marche / optimal
-la frontiere efficiente, la CML avec les estimations classiques.
+la frontiere efficiente, la CML avec les estimations classiques et crée le graphe des résultats
 """
 import pandas as pd
 import numpy as np
@@ -24,7 +24,7 @@ nb_row = len(dico[rf_name].index)
 rf = dico[rf_name].iloc[nb_row  -66:nb_row-6].mean()
 Name = [i for i in Name_tot if i != rf_name]
 
-#print(dico)
+
 for key, item in dico.items():
     item = item.pct_change()
     item = item.drop(index=0)
@@ -33,7 +33,7 @@ for key, item in dico.items():
 
 #Calcul rendement
 df_rendement = pd.DataFrame()
-#rf = dico[rf_name].mean()
+
 
 for df in Name:
     df_rendement = pd.concat([df_rendement, dico[df]], axis = 1)

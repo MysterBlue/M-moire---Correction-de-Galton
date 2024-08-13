@@ -31,9 +31,12 @@ Actif = ["AMZN", "ASML", "BRK-B", "CAT", "DIS", "GE", "GOOGL", "JPM", "KO", "MSF
 #          "KMB", "KO", "LLY", "LNT", "LOW", "MRK", "MSFT", "MTB", "MU", "NEM",  "NFLX", "NVDA", "NVO", "PFE","ROST","SBAC", "SJM",
 #            "SLB","SO", "SYY", "T", "TAP", "TXN", "TXT", "USB", "VTR", "WDC", "WMB", "XEL", "XOM", "WFC", "WYNN", "ZION"]
 print(len(Actif))
+
+
+
 #Calcul le rendement des actifs
 for key, item in dico.items():
-    #item.loc[:,'Date'] = pd.to_datetime(item["Date"])
+
     item["Close"] = item["Close"].pct_change()
     item = item.drop(index=0)
     item = item.reset_index(drop=True)
@@ -133,12 +136,12 @@ for i in range(Hist + Fut -1, nb_row- Fut):
             if pd.notna(Matrix_hist.loc[col1, col2]) and pd.notna(Matrix_fut.loc[col1, col2]):
                 cor_hist.append(Matrix_hist.loc[col1, col2])
                 cor_fut.append(Matrix_fut.loc[col1, col2])
-    #cor_data = pd.DataFrame({"Hist" : cor_hist, "Fut" : cor_fut})
     model2 = LinearRegression(fit_intercept=True)
     model2.fit(np.array(cor_hist).reshape(-1, 1), np.array(cor_fut))
     g0_c = ((j-1) * g0_c + model2.intercept_)/j
     g1_c = ((j-1) * g1_c + model2.coef_[0])/j
     j = j+1
+    #Calcul des estimateurs sur la periode choisie
     if i >= nb_row-Fut*(annee +1):
         mu_marko_est_temp = []
         mu_true_temp = []
@@ -157,6 +160,8 @@ for i in range(Hist + Fut -1, nb_row- Fut):
         t = t+1
 
 
+
+#possible d'optimiser ce qui suit via ce dico. Mais je ne suis pas parvenu.
 variables = {
     'mu_min_maro', 'std_min_maro', 'mu_min_galton', 'std_min_galton',
     'mu_min__marko_true', 'std_min_marko_true', 'mu_min_galton_true', 'std_min_galton_true',
@@ -199,6 +204,7 @@ std_tal_galton_true = []
 
 
 Res = {}
+#Classe les données par années
 for i in list(Cov_galton_est.keys()):
     #Portefeuille minimal
     w_min = mk.MinimalVariance(Cov_marko_est[i], len(Actif))
@@ -342,7 +348,7 @@ for key, item in temp_std.items():
 #print(temp_std[6], temp_std[8])
 
 
-
+#Mets les donnees dans un dictionnaire pour creer une dataframe
 Res["rendement  minimal"] = temp[1] 
 Res["std  minimal"] = temp_std[1]
 Res["Rendement reel minimal"] = temp[3]
