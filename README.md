@@ -11,6 +11,6 @@ Optimisation : programme qui calcule les portefeuilles clés de la théorie de M
 
 Galton : calcule le portefeuille de Talmud, le portefeuille à variance minimale et le portefeuille optimal de Markowitz avec la correction de Galton.
 
-critique2.py : crée les graphes de la critique basée sur les erreurs d'estimations.
+critique2 : crée les graphes de la critique basée sur les erreurs d'estimations.
 
 comparaison_rebal_V2 : compare les portefeuilles de Talmud, minimal et optimal, dont une partie est estimée via la méthode classique et l'autre via la correction de Galton. Les portefeuilles sont rebalancés tous les mois. Nous comparons le rendement et le risque accumulés sur un an.
