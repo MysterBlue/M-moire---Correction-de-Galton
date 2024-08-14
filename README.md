@@ -1,5 +1,6 @@
 # Mémoire---Correction-de-Galton
 Programmes créés pour la réalisation de mon mémoire : Optimisation de portefeuille - La théorie de Markowitz et la correction de Galton
+TOUS les programmes peuvent être améliorés et optimisés. Je n'ai pas regardé à faire les plus optimisés.
 
 DataDownload : permet de télécharger les données des actifs via yfinance et par une interface.
 
